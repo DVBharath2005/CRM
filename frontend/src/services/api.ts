@@ -1,4 +1,5 @@
-const API_BASE = '/api';
+const rawBase = (import.meta as any).env?.VITE_API_BASE_URL || 'https://crm-mini-erp-backend.onrender.com/api';
+const API_BASE = rawBase.replace(/\/+$/, '');
 
 export const getStoredToken = (): string | null => {
   return localStorage.getItem('token');
@@ -26,7 +27,8 @@ export const apiRequest = async <T = any>(
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE}${endpoint}`, {
+  const formattedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  const response = await fetch(`${API_BASE}${formattedEndpoint}`, {
     method: options.method || 'GET',
     headers,
     body: options.body ? JSON.stringify(options.body) : undefined,
