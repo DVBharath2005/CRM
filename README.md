@@ -63,7 +63,7 @@
 - **Framework**: Express.js
 - **ORM & Database**: Prisma ORM with SQLite (PostgreSQL compatible)
 - **Authentication**: JWT (JSON Web Tokens) & Bcrypt password hashing
-- **Deployment**: Fly.io (Dockerized)
+- **Deployment**: Render.com (100% Free Tier, No Credit Card Required)
 - **Testing**: Built-in Automated API Integration Test Suite
 
 ### Frontend
@@ -123,76 +123,47 @@ npm test
 
 ---
 
-### 1. 🚀 Backend Deployment to Fly.io (fly.io)
+### 1. 🚀 Backend Deployment to Render.com (Render) — 100% Free
 
-The backend is fully containerized with a production-grade multi-stage `Dockerfile`.
+Render hosts Node.js REST APIs for free without requiring a credit card.
 
-#### Prerequisites
-- Install the Fly CLI (`flyctl`):
-  - **macOS / Linux**: `curl -L https://fly.io/install.sh | sh`
-  - **Windows (PowerShell)**: `pwsh -c "iwr https://fly.io/install.ps1 -useb | iex"`
-- Log in or sign up to Fly.io:
-  ```bash
-  fly auth login
-  ```
+#### Step-by-Step Render Setup:
 
-#### Step-by-Step Fly.io Setup:
-
-1. **Navigate to the Backend Directory**:
-   ```bash
-   cd backend
-   ```
-
-2. **Initialize Fly App**:
-   Run `fly launch` to initialize your Fly configuration:
-   ```bash
-   fly launch --name crm-mini-erp-backend --no-deploy
-   ```
-   *If prompted to copy configuration or select an organization/region, choose your preferences.*
-
-3. **(Optional) Create a Persistent Volume for SQLite Database**:
-   To ensure database data persists across redeployments:
-   ```bash
-   fly volumes create crm_data --size 1 --region lon
-   ```
-
-4. **Set Environment Variables**:
-   Set secrets for production JWT authentication and database path:
-   ```bash
-   fly secrets set JWT_SECRET="super-secret-jwt-key-for-mini-erp-crm-2026"
-   fly secrets set PORT="5000"
-   fly secrets set DATABASE_URL="file:./dev.db"
-   ```
-
-5. **Deploy to Fly.io**:
-   ```bash
-   fly deploy
-   ```
-
-6. **Seed Database on Fly.io (First Deployment)**:
-   Run the Prisma DB push and seed command directly on the remote Fly instance:
-   ```bash
-   fly ssh console -c "npx prisma db push && npx tsx prisma/seed.ts"
-   ```
-
-7. **Verify Live Backend URL**:
-   Your backend REST API will be live at:
-   `https://crm-mini-erp-backend.fly.dev`
+1. Sign in to [dashboard.render.com](https://dashboard.render.com) using your GitHub account.
+2. Click **New +** -> **Web Service**.
+3. Select your repository: `DVBharath2005/CRM`.
+4. Configure the service:
+   - **Name**: `crm-mini-erp-backend`
+   - **Root Directory**: `backend`
+   - **Environment**: `Node`
+   - **Build Command**:
+     ```bash
+     npm install && npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts && npm run build
+     ```
+   - **Start Command**:
+     ```bash
+     node dist/server.js
+     ```
+5. Add Environment Variables under **Advanced**:
+   - `PORT`: `5000`
+   - `NODE_ENV`: `production`
+   - `JWT_SECRET`: `super-secret-jwt-key-for-mini-erp-crm-2026`
+   - `DATABASE_URL`: `file:./dev.db`
+6. Click **Create Web Service**. Render will automatically build your Docker/Node service, run migrations, seed initial data, and publish your live API URL (e.g., `https://crm-mini-erp-backend.onrender.com`).
 
 ---
 
 ### 2. ⚡ Frontend Deployment to Vercel (vercel.com)
 
-1. Push your latest code to your GitHub repository (`DVBharath2005/CRM`).
-2. Go to [vercel.com/new](https://vercel.com/new).
-3. Select **Import Repository** and pick `DVBharath2005/CRM`.
-4. Configure Project Settings:
+1. Go to [vercel.com/new](https://vercel.com/new).
+2. Select **Import Repository** and pick `DVBharath2005/CRM`.
+3. Configure Project Settings:
    - **Root Directory**: `frontend`
    - **Build Command**: `npm run build` (`tsc && vite build`)
    - **Output Directory**: `dist`
-5. (Optional) Add Environment Variable for Production Backend API URL:
-   - `VITE_API_BASE_URL`: `https://crm-mini-erp-backend.fly.dev/api`
-6. Click **Deploy**. Vercel will automatically build and publish your live production URL.
+4. Add Environment Variable under **Environment Variables**:
+   - `VITE_API_BASE_URL`: `https://crm-mini-erp-backend.onrender.com/api`
+5. Click **Deploy**. Vercel will build and publish your live frontend app.
 
 ---
 
