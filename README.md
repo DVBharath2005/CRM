@@ -117,15 +117,23 @@ npx tsx src/tests/api.test.ts
 
 ---
 
-## 📬 Postman Collection
+## 🌐 Deploying Frontend to Vercel
 
-A complete Postman collection is available at `postman/Mini_ERP_CRM.postman_collection.json` covering all REST endpoints:
-- `POST /api/auth/login`
-- `GET /api/customers`
-- `POST /api/customers`
-- `POST /api/customers/:id/notes`
-- `GET /api/products`
-- `POST /api/products/:id/stock-adjust`
-- `GET /api/challans`
-- `POST /api/challans`
-- `GET /api/dashboard/stats`
+The repository is pre-configured with `vercel.json` for SPA routing & instant Vite builds.
+
+### Option 1: Vercel Web Dashboard (Recommended - 1-Click)
+1. Go to [vercel.com/new](https://vercel.com/new).
+2. Click **Import Repository** and select `DVBharath2005/CRM`.
+3. Set **Root Directory** to `frontend`.
+4. Click **Deploy**. Vercel will automatically build and publish your live production URL.
+
+### Option 2: Vercel CLI Terminal Command
+```bash
+# 1. Login to Vercel
+npx vercel login
+
+# 2. Deploy frontend to Production
+cd frontend
+npx vercel --prod
+```
+
