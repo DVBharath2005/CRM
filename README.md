@@ -138,7 +138,7 @@ Render hosts Node.js REST APIs for free without requiring a credit card.
    - **Environment**: `Node`
    - **Build Command**:
      ```bash
-     npm install && npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts && npm run build
+     npm install --include=dev && npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts && npm run build
      ```
    - **Start Command**:
      ```bash
