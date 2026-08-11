@@ -117,23 +117,34 @@ npx tsx src/tests/api.test.ts
 
 ---
 
-## 🌐 Deploying Frontend to Vercel
+## 🌐 Deployment Guide (Vercel + Render)
 
-The repository is pre-configured with `vercel.json` for SPA routing & instant Vite builds.
+### 1. 🚀 Backend Deployment to Render (Render.com)
 
-### Option 1: Vercel Web Dashboard (Recommended - 1-Click)
+The repository includes a `render.yaml` file pre-configured for Render.
+
+#### Step-by-Step Render Setup:
+1. Go to [dashboard.render.com](https://dashboard.render.com) and click **New +** -> **Web Service**.
+2. Connect your GitHub repository: `DVBharath2005/CRM`.
+3. Configure the service settings:
+   - **Name**: `crm-mini-erp-backend`
+   - **Root Directory**: `backend`
+   - **Environment**: `Node`
+   - **Build Command**: `npm install && npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts && npm run build`
+   - **Start Command**: `node dist/server.js`
+4. Add Environment Variables:
+   - `PORT`: `5000`
+   - `NODE_ENV`: `production`
+   - `JWT_SECRET`: `super-secret-jwt-key-for-mini-erp-crm-2026`
+   - `DATABASE_URL`: `file:./dev.db`
+5. Click **Create Web Service**. Render will deploy your live API endpoint (e.g. `https://crm-mini-erp-backend.onrender.com`).
+
+---
+
+### 2. ⚡ Frontend Deployment to Vercel (Vercel.com)
+
 1. Go to [vercel.com/new](https://vercel.com/new).
 2. Click **Import Repository** and select `DVBharath2005/CRM`.
 3. Set **Root Directory** to `frontend`.
 4. Click **Deploy**. Vercel will automatically build and publish your live production URL.
-
-### Option 2: Vercel CLI Terminal Command
-```bash
-# 1. Login to Vercel
-npx vercel login
-
-# 2. Deploy frontend to Production
-cd frontend
-npx vercel --prod
-```
 
