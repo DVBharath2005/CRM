@@ -8,6 +8,7 @@ interface AuthContextType {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   quickSwitchRole: (role: UserRole) => Promise<void>;
+  switchRole: (role: UserRole) => Promise<void>;
   logout: () => void;
 }
 
@@ -72,7 +73,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, quickSwitchRole, logout }}>
+    <AuthContext.Provider value={{ user, token, loading, login, quickSwitchRole, switchRole: quickSwitchRole, logout }}>
       {children}
     </AuthContext.Provider>
   );

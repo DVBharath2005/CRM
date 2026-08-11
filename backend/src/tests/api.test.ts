@@ -10,7 +10,7 @@ const BASE_URL = `http://localhost:${PORT}/api`;
 const request = async (
   endpoint: string,
   options: { method?: string; body?: any; token?: string } = {}
-) => {
+): Promise<{ status: number; data: any }> => {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };

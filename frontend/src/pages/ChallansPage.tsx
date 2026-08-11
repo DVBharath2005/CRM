@@ -495,14 +495,14 @@ export const ChallansPage: React.FC = () => {
             {/* Header info */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem', margin: '1.5rem 0' }}>
               <div>
-                <h4 style={{ fontSize: '0.8rem', uppercase: true, color: '#64748b', fontWeight: 700 }}>ISSUED TO:</h4>
+                <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: '#64748b', fontWeight: 700 }}>ISSUED TO:</h4>
                 <div style={{ fontWeight: 800, fontSize: '1.1rem' }}>{selectedChallan.customerSnapshot?.customerName}</div>
                 <div>{selectedChallan.customerSnapshot?.businessName}</div>
                 <div style={{ fontSize: '0.85rem', color: '#475569' }}>{selectedChallan.customerSnapshot?.address}</div>
                 <div style={{ fontSize: '0.85rem', marginTop: '0.3rem' }}>GSTIN: {selectedChallan.customerSnapshot?.gstNumber || 'N/A'}</div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <h4 style={{ fontSize: '0.8rem', uppercase: true, color: '#64748b', fontWeight: 700 }}>DISPATCH DETAILS:</h4>
+                <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: '#64748b', fontWeight: 700 }}>DISPATCH DETAILS:</h4>
                 <div>Date: <strong>{new Date(selectedChallan.createdAt).toLocaleDateString()}</strong></div>
                 <div>Status: <span className={`badge badge-${selectedChallan.status.toLowerCase()}`}>{selectedChallan.status}</span></div>
                 <div>Created By: <strong>{selectedChallan.createdBy}</strong></div>

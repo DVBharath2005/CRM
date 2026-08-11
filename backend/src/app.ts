@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes.js';
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (req: Request, res: Response) => {
   res.json({
     status: 'OK',
     service: 'Anjali Enterprise - Operations Portal Backend API',
@@ -25,7 +25,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Demo credentials list for quick login reference
-app.get('/api/auth/demo-credentials', (req, res) => {
+app.get('/api/auth/demo-credentials', (req: Request, res: Response) => {
   res.json({
     roles: [
       { role: 'Admin', email: 'amit.verma@anjalienterprise.com', password: 'password123', name: 'Amit Verma (System Administrator)' },

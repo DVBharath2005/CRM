@@ -82,7 +82,7 @@ export const getChallans = async (req: AuthRequest, res: Response): Promise<void
 
 export const getChallanById = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const challan = await prisma.salesChallan.findUnique({
       where: { id },
       include: {
@@ -276,7 +276,7 @@ export const createChallan = async (req: AuthRequest, res: Response): Promise<vo
 
 export const updateChallanStatus = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const { status } = req.body;
 
     if (!['Draft', 'Confirmed', 'Cancelled'].includes(status)) {

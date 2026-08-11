@@ -62,7 +62,7 @@ export const getCustomers = async (req: AuthRequest, res: Response): Promise<voi
 
 export const getCustomerById = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const customer = await prisma.customer.findUnique({
       where: { id },
       include: {
@@ -135,7 +135,7 @@ export const createCustomer = async (req: AuthRequest, res: Response): Promise<v
 
 export const updateCustomer = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const {
       customerName,
       mobileNumber,
@@ -182,7 +182,7 @@ export const updateCustomer = async (req: AuthRequest, res: Response): Promise<v
 
 export const addFollowUpNote = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const { note, nextFollowUpDate } = req.body;
 
     if (!note || note.trim() === '') {
