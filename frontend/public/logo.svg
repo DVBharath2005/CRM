@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- White Backing Glow Filter -->
+    <filter id="whiteGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#ffffff" flood-opacity="0.9"/>
+    </filter>
+
+    <!-- Metallic Charcoal Gradients -->
+    <linearGradient id="slateGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="slateGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="slateGradHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    
+    <!-- Vivid Gold Metallic Gradients for Star & Sunburst -->
+    <linearGradient id="goldGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="goldGradDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Optional Light Background Circle to guarantee crisp visibility on dark backgrounds -->
+  <circle cx="250" cy="250" r="230" fill="#ffffff" stroke="#fef08a" stroke-width="8"/>
+
+  <g transform="translate(0, 15)">
+    <!-- Sunburst Rays at Top -->
+    <g fill="url(#goldGradLight)">
+      <polygon points="250,55 243,95 257,95"/>
+      <polygon points="215,62 216,102 229,99"/>
+      <polygon points="285,62 271,99 284,102"/>
+      <polygon points="183,78 190,114 203,107"/>
+      <polygon points="317,78 297,107 310,114"/>
+      <polygon points="155,102 169,132 180,121"/>
+      <polygon points="345,102 320,121 331,132"/>
+    </g>
+
+    <!-- Top Arc Circle Frame -->
+    <path d="M 125,290 A 150,150 0 1,1 375,290" fill="none" stroke="url(#slateGrad1)" stroke-width="22" stroke-linecap="round"/>
+    <path d="M 140,290 A 135,135 0 1,1 360,290" fill="none" stroke="#fef08a" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Left Leg of "A" -->
+    <!-- Outer Main Body -->
+    <polygon points="245,160 115,440 185,440 245,290" fill="url(#slateGrad1)"/>
+    <polygon points="115,440 185,440 160,420 115,440" fill="#0f172a"/>
+    <polygon points="245,160 210,320 185,440 115,440" fill="url(#slateGradHighlight)" opacity="0.5"/>
+
+    <!-- Right Leg of "A" with Upward Arrowhead -->
+    <!-- Main Arrow Shaft -->
+    <polygon points="245,160 385,440 315,440 245,290" fill="url(#slateGrad1)"/>
+    
+    <!-- Arrowhead Extending Up-Right -->
+    <g>
+      <polygon points="245,290 380,155 340,195 315,440" fill="url(#slateGrad2)"/>
+      <!-- Big Arrow Head -->
+      <polygon points="405,130 300,195 345,235 365,215 405,130" fill="url(#slateGrad1)"/>
+      <polygon points="405,130 365,215 390,260 405,130" fill="url(#slateGradHighlight)"/>
+    </g>
+
+    <!-- Center Apex Joint cap -->
+    <polygon points="245,160 230,210 260,210" fill="#0f172a"/>
+
+    <!-- Center Golden Star -->
+    <g transform="translate(245, 340) scale(1.15)">
+      <!-- Star Facets Light Side -->
+      <polygon points="0,-45 0,0 13,-13" fill="url(#goldGradLight)"/>
+      <polygon points="43,-13 0,0 16,10" fill="url(#goldGradLight)"/>
+      <polygon points="27,38 0,0 0,20" fill="url(#goldGradLight)"/>
+      <polygon points="-27,38 0,0 -16,10" fill="url(#goldGradLight)"/>
+      <polygon points="-43,-13 0,0 -13,-13" fill="url(#goldGradLight)"/>
+
+      <!-- Star Facets Dark Side -->
+      <polygon points="0,-45 0,0 -13,-13" fill="url(#goldGradDark)"/>
+      <polygon points="43,-13 0,0 13,-13" fill="url(#goldGradDark)"/>
+      <polygon points="27,38 0,0 16,10" fill="url(#goldGradDark)"/>
+      <polygon points="-27,38 0,0 0,20" fill="url(#goldGradDark)"/>
+      <polygon points="-43,-13 0,0 -16,10" fill="url(#goldGradDark)"/>
+    </g>
+  </g>
+</svg>

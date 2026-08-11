@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Builds & Outputs
+dist/
+build/
+.output/
+
+# Environment & Secret Files
+.env
+.env.local
+.env.production
+
+# Database & SQLite files
+*.db
+*.db-journal
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# OS / Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
