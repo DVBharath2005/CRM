@@ -117,23 +117,27 @@ npx tsx src/tests/api.test.ts
 
 ---
 
-## 🌐 Deployment Guide (Vercel + Railway)
+## 🌐 Deployment Guide (Vercel + Render)
 
-### 1. 🚀 Backend Deployment to Railway (Railway.app)
+### 1. 🚀 Backend Deployment to Render (Render.com)
 
-The repository includes pre-configured `railway.json` and `Procfile` for instant Railway deployment.
+The repository includes a `render.yaml` file pre-configured for Render.
 
-#### Step-by-Step Railway Setup:
-1. Go to [railway.app](https://railway.app) and log in.
-2. Click **+ New Project** -> Select **Deploy from GitHub repo**.
-3. Select your repository: `DVBharath2005/CRM`.
-4. Select **`backend`** directory (or Root Directory `backend`).
-5. Add **Variables** (Environment Variables) in Railway service settings:
+#### Step-by-Step Render Setup:
+1. Go to [dashboard.render.com](https://dashboard.render.com) and click **New +** -> **Web Service**.
+2. Connect your GitHub repository: `DVBharath2005/CRM`.
+3. Configure the service settings:
+   - **Name**: `crm-mini-erp-backend`
+   - **Root Directory**: `backend`
+   - **Environment**: `Node`
+   - **Build Command**: `npm install && npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts && npm run build`
+   - **Start Command**: `node dist/server.js`
+4. Add Environment Variables:
    - `PORT`: `5000`
    - `NODE_ENV`: `production`
    - `JWT_SECRET`: `super-secret-jwt-key-for-mini-erp-crm-2026`
    - `DATABASE_URL`: `file:./dev.db`
-6. Click **Generate Domain** under Settings -> Networking. Railway will publish your live API server URL (e.g. `https://crm-backend-production.up.railway.app`).
+5. Click **Create Web Service**. Render will automatically build, seed the database, and publish your live REST API server URL (e.g. `https://crm-mini-erp-backend.onrender.com`).
 
 ---
 
